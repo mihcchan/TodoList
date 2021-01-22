@@ -36,6 +36,6 @@
         android:layout_centerVertical="true"
         android:gravity="end"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_twotone_delete_forever_24"/>
+        android:src="@drawable/ic_baseline_delete_forever_24"/>
 
 </RelativeLayout>

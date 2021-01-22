@@ -9,9 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
 class ToDoAdapter(context: Context, toDoList:MutableList<ToDoTarefaModelo>) : BaseAdapter() {
 

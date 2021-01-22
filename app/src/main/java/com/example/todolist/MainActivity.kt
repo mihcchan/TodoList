@@ -1,9 +1,7 @@
 package com.example.todolist
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
@@ -13,7 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
-    lateinit var database: DatabaseReference
+    lateinit var database: DatabaseReference //a database do firebase está fixa em qualquer instalação do app vai aparecer a mesma lista de tarefas
     var toDOList : MutableList<ToDoTarefaModelo>? = null
     lateinit var adapter: ToDoAdapter
     private var listViewItem : ListView? = null
@@ -33,8 +31,8 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             val textEditText = EditText(this)
             alertDialog.setTitle("Escreva a tarefa")
             alertDialog.setView(textEditText)
-//            textEditText.isFocusableInTouchMode = true
-//            textEditText.requestFocus()
+//            textEditText.isFocusableInTouchMode = true             //estava tentando fazer o teclado abrir sozinho quando for adicionar nova tarefa
+//            textEditText.requestFocus()                           // mas não consegui fazer funcionar
 
             alertDialog.setPositiveButton("Adicionar"){dialog, i ->
                 val toDoTarefa = ToDoTarefaModelo.createList()

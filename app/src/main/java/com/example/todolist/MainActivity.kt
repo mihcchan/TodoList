@@ -1,12 +1,14 @@
 package com.example.todolist
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
@@ -29,9 +31,11 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         fab.setOnClickListener { view ->
             val alertDialog = AlertDialog.Builder(this)
             val textEditText = EditText(this)
-            //alertDialog.setMessage("Adicionar tarefa")
             alertDialog.setTitle("Escreva a tarefa")
             alertDialog.setView(textEditText)
+//            textEditText.isFocusableInTouchMode = true
+//            textEditText.requestFocus()
+
             alertDialog.setPositiveButton("Adicionar"){dialog, i ->
                 val toDoTarefa = ToDoTarefaModelo.createList()
                 toDoTarefa.texto = textEditText.text.toString()

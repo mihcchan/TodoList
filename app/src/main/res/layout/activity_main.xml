@@ -11,7 +11,7 @@
         android:id="@+id/item_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#696969"
+        android:background="#a1b1c2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:scrollbars="none"/>

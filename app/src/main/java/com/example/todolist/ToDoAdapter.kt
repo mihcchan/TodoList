@@ -1,6 +1,7 @@
 package com.example.todolist
 
 import android.content.Context
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,9 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class ToDoAdapter(context: Context, toDoList:MutableList<ToDoTarefaModelo>) : BaseAdapter() {
 
@@ -18,6 +22,7 @@ class ToDoAdapter(context: Context, toDoList:MutableList<ToDoTarefaModelo>) : Ba
     override fun getCount(): Int {
         return itemList.size
     }
+
     override fun getItem(p0: Int): Any {
         return itemList.get(p0)
     }
@@ -25,6 +30,8 @@ class ToDoAdapter(context: Context, toDoList:MutableList<ToDoTarefaModelo>) : Ba
     override fun getItemId(p0: Int): Long {
         return p0.toLong()
     }
+
+    class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val UID: String = itemList.get(p0).UID as String
@@ -46,7 +53,10 @@ class ToDoAdapter(context: Context, toDoList:MutableList<ToDoTarefaModelo>) : Ba
         viewHolder.textLabel.text = texto
         viewHolder.estaFeito.isChecked = feito
 
+        toggleStrikeText(viewHolder.textLabel, viewHolder.estaFeito.isChecked)
+
         viewHolder.estaFeito.setOnClickListener {
+            toggleStrikeText(viewHolder.textLabel, viewHolder.estaFeito.isChecked)
             updateAndDelete.modifyItem(UID, !feito)
         }
 
@@ -62,6 +72,15 @@ class ToDoAdapter(context: Context, toDoList:MutableList<ToDoTarefaModelo>) : Ba
         val textLabel: TextView = row!!.findViewById(R.id.item_textView) as TextView
         val estaFeito: CheckBox = row!!.findViewById(R.id.checkbox) as CheckBox
         val foiDeletado: ImageButton = row!!.findViewById(R.id.close) as ImageButton
+
+    }
+
+    private fun toggleStrikeText(texto: TextView, feito: Boolean) {
+        if (feito){
+            texto.paintFlags = texto.paintFlags or STRIKE_THRU_TEXT_FLAG
+        } else {
+            texto.paintFlags = texto.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
+        }
 
     }
 
